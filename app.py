@@ -18,10 +18,14 @@ def save_message():
 
 @app.route('/xss')
 def view_message():
-    escaped_message = current_message.translate({ord(c): ('\\'+c) for c in "\"\'<>&"})
-    protect_message = html.escape(current_message)
-    context = dict(message=html.escape(escaped_message), protect_message=protect_message)
-    return render_template("view_message.html", **context)
+    # escaped_message = current_message.translate({ord(c): ('\\'+c) for c in "\"\'<>&"})
+    # protect_message = html.escape(current_message)
+    # context = dict(
+    #     message=current_message,
+    #     protect_message=protect_message,
+    #     escaped_message=escaped_message
+    # )
+    return render_template("view_message.html", message=current_message, protect_message=html.escape(current_message))
 
 
 if __name__ == '__main__':
